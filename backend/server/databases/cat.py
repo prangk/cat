@@ -15,7 +15,7 @@ cat_collection = database.get_collection("cats_collection")
 def cat_helper(cat) -> dict:
     return {
         "id": str(cat["_id"]),
-        "item": cat["item"],
+        "breed_name": cat["item"],
     }
 
 
