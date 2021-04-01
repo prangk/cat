@@ -1,18 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import Navbar from './components/Navbar.js'
 import List from './components/List.js'
 import Title from './components/Title.js'
-class Cat extends React.Component {
-  render() {
+
+const Cat = () => {
+  const [cats, setCats] = useState([])
+  const fetchCats = async () => {
+    const response = await fetch("http://localhost:8000/cat")
+    const cats = await response.json()
+
+    setCats(cats.data[0])
+  }
+
+  useEffect(() => {
+    fetchCats()
+  }, [])
+
     return (
       <div>
+       
         <Navbar />
         <Title />
-        <List />
+        <List cats={cats}/>
+  
+        
       </div>
     );
-  }
 }
 
 ReactDOM.render(<Cat />, document.getElementById('root'));
