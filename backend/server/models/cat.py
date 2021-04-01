@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, Field
 
 
 class CatSchema(BaseModel):
@@ -8,20 +8,23 @@ class CatSchema(BaseModel):
     class Config:
         schema_extra = {
             "example": {
-                "item": "Thing to do",
+                "breed_name": "CAT BREED",
+                "image": "BASE64",
+                "bg_image": "BASE64"
+
             }
         }
 
 
-class UpdateCatModel(BaseModel):
-    item: Optional[str]
+# class UpdateCatModel(BaseModel):
+#     item: Optional[str]
 
-    class Config:
-        schema_extra = {
-            "example": {
-                "item": "Thing to do",
-            }
-        }
+#     class Config:
+#         schema_extra = {
+#             "example": {
+#                 "item": "Thing to do",
+#             }
+#         }
 
 
 def ResponseModel(data, message):
