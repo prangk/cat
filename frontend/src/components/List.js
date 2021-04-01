@@ -1,12 +1,32 @@
 import React from 'react';
-import { Container,Card,CardDeck,Modal,Button} from "react-bootstrap";
+
+import { Container,Card,CardDeck,Modal,Button,CardColumns} from "react-bootstrap";
+
 
 
 const ImageCat = (props) =>{
     return(
+
         <img width="300px" src={props.imgB64} alt={props.name} />
     )
    
+}
+const CardCat =(props) =>{
+    const [modalShow, setModalShow] = React.useState(false);
+    return(
+        <Card>
+            <Button variant="default" style={{ color: "white", background: "white" }} onClick={() => setModalShow(true)}>
+            <ImageCat path={props.path} name={props.name} />
+            </Button>
+            <MyVerticallyCenteredModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+            />            
+            <Card.Body>
+            <Card.Title>{props.title}</Card.Title>
+            </Card.Body>
+        </Card>
+    )
 }
 
 
@@ -21,7 +41,9 @@ function MyVerticallyCenteredModal(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
+
             {props.cat.breed_name}
+
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -38,6 +60,7 @@ function MyVerticallyCenteredModal(props) {
       </Modal>
     );
   }
+
 
   const CardCat =(props) =>{
     const [modalShow, setModalShow] = React.useState(false);
@@ -75,4 +98,6 @@ const List = (props) =>{
     );
 };
 
+
 export default List;
+

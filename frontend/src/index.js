@@ -4,7 +4,6 @@ import Navbar from './components/Navbar.js'
 import List from './components/List.js'
 import Title from './components/Title.js'
 
-
 const Cat = () => {
   const [cats, setCats] = useState([])
   const fetchCats = async () => {
@@ -31,11 +30,3 @@ const Cat = () => {
 }
 
 ReactDOM.render(<Cat />, document.getElementById('root'));
-
-/* <TodosContext.Provider value={{todos, fetchTodos}}>
-    <Stack spacing={5}>
-      {todos.map((todo) => (
-        <b>{todo.item}</b>
-      ))}
-    </Stack>
-  </TodosContext.Provider> */
