@@ -15,7 +15,10 @@ cat_collection = database.get_collection("cats_collection")
 def cat_helper(cat) -> dict:
     return {
         "id": str(cat["_id"]),
-        "breed_name": cat["item"],
+        "breed_name": cat["breed_name"],
+        "image": cat["image"],
+        "bg_image": cat["bg_image"]
+
     }
 
 
@@ -28,37 +31,37 @@ async def retrieve_cats():
 
 
 # Add a new cat into to the database
-async def add_cat(cat_data: dict) -> dict:
-    cat = await cat_collection.insert_one(cat_data)
-    new_cat = await cat_collection.find_one({"_id": cat.inserted_id})
-    return cat_helper(new_cat)
+# async def add_cat(cat_data: dict) -> dict:
+#     cat = await cat_collection.insert_one(cat_data)
+#     new_cat = await cat_collection.find_one({"_id": cat.inserted_id})
+#     return cat_helper(new_cat)
 
 
-# Retrieve a cat with a matching ID
-async def retrieve_cat(id: str) -> dict:
-    cat = await cat_collection.find_one({"_id": ObjectId(id)})
-    if cat:
-        return cat_helper(cat)
+# # Retrieve a cat with a matching ID
+# async def retrieve_cat(id: str) -> dict:
+#     cat = await cat_collection.find_one({"_id": ObjectId(id)})
+#     if cat:
+#         return cat_helper(cat)
 
 
-# Update a cat with a matching ID
-async def update_cat(id: str, data: dict):
-    # Return false if an empty request body is sent.
-    if len(data) < 1:
-        return False
-    cat = await cat_collection.find_one({"_id": ObjectId(id)})
-    if cat:
-        updated_cat = await cat_collection.update_one(
-            {"_id": ObjectId(id)}, {"$set": data}
-        )
-        if updated_cat:
-            return True
-        return False
+# # Update a cat with a matching ID
+# async def update_cat(id: str, data: dict):
+#     # Return false if an empty request body is sent.
+#     if len(data) < 1:
+#         return False
+#     cat = await cat_collection.find_one({"_id": ObjectId(id)})
+#     if cat:
+#         updated_cat = await cat_collection.update_one(
+#             {"_id": ObjectId(id)}, {"$set": data}
+#         )
+#         if updated_cat:
+#             return True
+#         return False
 
 
-# Delete a cat from the database
-async def delete_cat(id: str):
-    cat = await cat_collection.find_one({"_id": ObjectId(id)})
-    if cat:
-        await cat_collection.delete_one({"_id": ObjectId(id)})
-        return True
+# # Delete a cat from the database
+# async def delete_cat(id: str):
+#     cat = await cat_collection.find_one({"_id": ObjectId(id)})
+#     if cat:
+#         await cat_collection.delete_one({"_id": ObjectId(id)})
+#         return True
