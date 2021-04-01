@@ -69,13 +69,7 @@ const List = (props) =>{
          <CardCat cat={cat} />
         ))}
             
-            {/* <CardCat cat={props.cats[1]} />
-            <CardCat cat={props.cats[2]} />
-        </CardDeck>
-        <br></br>
-        <CardDeck>
-            <CardCat cat={props.cats[3]} path="image/korat_cat.jpg" name="korat_cat" title="Korat"/>
-            <CardCat cat={props.cats[4]} path="image/siamese_cat.jpg" name="siamese_cat" title="Siamese"/>             */}
+
         </CardDeck>
     </Container>
     );
