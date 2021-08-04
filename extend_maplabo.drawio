@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-08-04T05:55:28.699Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36" etag="6qpN_cxYXJAmqUDdSd3E" version="14.9.4" type="github">
+<mxfile host="app.diagrams.net" modified="2021-08-04T05:56:26.551Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36" etag="AoPfMZgoMz6Wkyv6Dx0g" version="14.9.4" type="github">
   <diagram id="5SXes1SylNmNLAyZej1b" name="Page-1">
     <mxGraphModel dx="3235" dy="727" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -168,15 +168,21 @@
           <mxGeometry y="26" width="290" height="30" as="geometry" />
         </mxCell>
         <mxCell id="j3aWC36EJ92PUxpBvVHE-58" value="app-bar-state-reducer.ts" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;fillColor=#e51400;strokeColor=#B20000;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="-1240" y="1266" width="290" height="56" as="geometry">
+          <mxGeometry x="-1240" y="1260" width="290" height="116" as="geometry">
             <mxRectangle x="-70" y="90" width="120" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="j3aWC36EJ92PUxpBvVHE-59" value="type AppBarAction" style="text;strokeColor=#314354;fillColor=#647687;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;fontColor=#ffffff;" vertex="1" parent="j3aWC36EJ92PUxpBvVHE-58">
+        <mxCell id="j3aWC36EJ92PUxpBvVHE-59" value="initialFullAnalysisHeader" style="text;strokeColor=#314354;fillColor=#647687;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;fontColor=#ffffff;" vertex="1" parent="j3aWC36EJ92PUxpBvVHE-58">
           <mxGeometry y="26" width="290" height="30" as="geometry" />
         </mxCell>
+        <mxCell id="j3aWC36EJ92PUxpBvVHE-90" value="initialState" style="text;strokeColor=#314354;fillColor=#647687;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;fontColor=#ffffff;" vertex="1" parent="j3aWC36EJ92PUxpBvVHE-58">
+          <mxGeometry y="56" width="290" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="j3aWC36EJ92PUxpBvVHE-91" value="reduceAppBarState" style="text;strokeColor=#314354;fillColor=#647687;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=12;fontColor=#ffffff;" vertex="1" parent="j3aWC36EJ92PUxpBvVHE-58">
+          <mxGeometry y="86" width="290" height="30" as="geometry" />
+        </mxCell>
         <mxCell id="j3aWC36EJ92PUxpBvVHE-60" value="authentication-state-reducer.ts" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;fillColor=#e51400;strokeColor=#B20000;fontColor=#ffffff;" vertex="1" parent="1">
-          <mxGeometry x="-1240" y="1354" width="290" height="86" as="geometry">
+          <mxGeometry x="-1240" y="1390" width="290" height="86" as="geometry">
             <mxRectangle x="-70" y="90" width="120" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -245,7 +251,7 @@
         <mxCell id="j3aWC36EJ92PUxpBvVHE-85" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="j3aWC36EJ92PUxpBvVHE-53" target="j3aWC36EJ92PUxpBvVHE-89">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="j3aWC36EJ92PUxpBvVHE-86" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="j3aWC36EJ92PUxpBvVHE-53" target="j3aWC36EJ92PUxpBvVHE-59">
+        <mxCell id="j3aWC36EJ92PUxpBvVHE-86" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="j3aWC36EJ92PUxpBvVHE-53" target="j3aWC36EJ92PUxpBvVHE-91">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
