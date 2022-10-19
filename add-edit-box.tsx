@@ -98,7 +98,7 @@ export const AddEditTable = withStyles(styles)<
     const initialNote = ''
 
     const [open, setOpen] = React.useState(true);
-    const [defectMode, setDefectMode] = React.useState(initialDefectMode);
+    const [defectMode, setDefectMode] = React.useState<Array<AddNewFromTable>>(rows);
     const [note, setNote] = React.useState(initialNote);
     
     const handleRemove = (event: React.MouseEvent<HTMLElement>, id: number) => {
@@ -114,14 +114,25 @@ export const AddEditTable = withStyles(styles)<
 
     const handleNoteChange = React.useCallback(
       (event: React.ChangeEvent<HTMLInputElement>) => {
-        setNote(event.target.value);
+        const value = event.target.value
+        const updatedId = event.target.id
+        
+        let temp = copy defectMode to temp
+        
+        for objectRow in temp:
+            if objectRow.id == updatedId:
+                objectRow.note = value
+        
+        setDefectMode(temp)
+        
+        // setNote(event.target.value);
       },
-      [note]
+      [defectMode]
     );
 
     const handleRequest = React.useCallback(
       (event: React.MouseEvent<HTMLButtonElement>) => {
-       onRequest(rows)
+       onRequest(defectMode)
       },
       [rows]
     );
@@ -188,7 +199,7 @@ export const AddEditTable = withStyles(styles)<
                 </TableRow>
               </TableHead>
               <TableBody>
-              {rows.map((row) => {
+              {defectMode.map((row) => {
                     return (
                       <TableRow>
                         <TableCell key="day">{row.day}</TableCell>
@@ -235,7 +246,7 @@ export const AddEditTable = withStyles(styles)<
                         </TableCell>
 
                         <TableCell key="defectMode" align="right">   
-                        {rows.length > 0 && (
+
                           <TableCell>
                             {rows.map((newRow) => {
                               if (newRow === row) {
@@ -255,32 +266,27 @@ export const AddEditTable = withStyles(styles)<
                               }
                             })}
                           </TableCell>
-                        )}
+                
                         </TableCell>
 
                         <TableCell key="note" align="right">   
-                        {rows.length > 0 && (
-                          <TableCell>
-                            {rows.map((newRow) => {
-                              if (newRow === row) {
-                                return (
-                                  <div style={{ paddingBottom: "0.5rem" }}>
-                                    <TextField
-                                      id = "note"
-                                      variant="outlined"
-                                      style={{ right: "0.875rem" }}
-                                      size="small"
-                                      value={row.note}
-                                      onChange={handleNoteChange}
-                                    />
-                                  </div>
-                                );
-                              } else {
-                                return false;
-                              }
-                            })}
-                          </TableCell>
-                        )}
+                        
+                        <TableCell>
+                  
+                                <div style={{ paddingBottom: "0.5rem" }}>
+                                  <TextField
+                                    id = "note"
+                                    key = row.id
+                                    variant="outlined"
+                                    style={{ right: "0.875rem" }}
+                                    size="small"
+                                    value={row.note}
+                                    onChange={handleNoteChange}
+                                  />
+                                </div>
+                        
+                        </TableCell>
+                     
                         </TableCell>
                         <TableCell key="delete">
                           <div
