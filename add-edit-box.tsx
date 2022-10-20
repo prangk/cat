@@ -1,5 +1,4 @@
 import React from "react";
-import {useSelector} from 'react-redux'
 import { AddNewFromTable } from "../../../types/defect-mode-page-state";
 import { getImageApiUrl } from "../../../apis";
 
@@ -18,9 +17,6 @@ import {
   Select,
   Toolbar,
   Collapse,
-  IconButton,
-  MenuItem,
-  TableSortLabel,
 } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
 import CancelIcon from "@material-ui/icons/Cancel";
@@ -53,7 +49,7 @@ const styles = (theme: Theme) => ({
 interface Props {
   rows: AddNewFromTable[];
   onRemoveSelectedId: (id: number) => void;
-  onRequest: (rows: AddNewFromTable[]) => void;
+  onRegisterRequest: (rows: AddNewFromTable[]) => void;
 }
 export const AddEditTable = withStyles(styles)<
   React.FunctionComponent<Props & WithStyles<typeof styles>>
@@ -61,84 +57,48 @@ export const AddEditTable = withStyles(styles)<
   ({
     classes,
     rows, 
-    onRequest,
+    onRegisterRequest,
     onRemoveSelectedId
   }) => {
-   
-    const initialTableState = {
-      id: 0,
-      itemID: 0,
-      seq: 0,
-      openo: "",
-      testno: "",
-      clusterno: "",
-      mapImage: "",
-      semImage1: "",
-      defectMode: "",
-      trend:"",
-      note:"",
-      product: "",
-      chipSize: "",
-      vol: "",
-      day: "",
-      reportId: "",
-    }
-    
-    // const [insertTable, setInsertTable] = React.useState(initialDefectMode);
-    const transaction = useSelector((state) => initialTableState)
-    const [localTransaction, setLocalTransaction] = React.useState(null)
+    console.log("BEFORE CHANGE",rows)
+    const [open, setOpen] = React.useState(true);
+    const [items, setItems] = React.useState(rows);
     
     React.useEffect(() => {
-      if (!localTransaction && transaction) {
-        setLocalTransaction(transaction);
-      }
-    }, [transaction, localTransaction])
+      setItems(rows);
+    }, [rows])
 
-    const initialDefectMode = ''
-    const initialNote = ''
-
-    const [open, setOpen] = React.useState(true);
-    const [defectMode, setDefectMode] = React.useState<Array<AddNewFromTable>>(rows);
-    const [note, setNote] = React.useState(initialNote);
-    
     const handleRemove = (event: React.MouseEvent<HTMLElement>, id: number) => {
       onRemoveSelectedId(id);
     }
- 
-    const handleDefectModeChange = React.useCallback(
-      (event: React.ChangeEvent<HTMLInputElement>) => {
-        setDefectMode(event.target.value);
-      },
-      [defectMode]
-    );
 
-    const handleNoteChange = React.useCallback(
+    const handleChange = React.useCallback(
       (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value
-        const updatedId = event.target.id
-        
-        let temp = copy defectMode to temp
-        
-        for objectRow in temp:
-            if objectRow.id == updatedId:
-                objectRow.note = value
-        
-        setDefectMode(temp)
-        
-        // setNote(event.target.value);
+        const updatedId = Number(event.target.id)
+        const updatedName = event.target.name
+        const temp = items
+        for (const objectRow in temp) {
+          if (temp[objectRow].id == updatedId && updatedName == "defectMode"){
+            temp[objectRow].defectMode = value
+          }
+          else if (temp[objectRow].id == updatedId && updatedName == "note"){
+            temp[objectRow].note = value
+          }
+        }
+        setItems(temp)
       },
-      [defectMode]
+      [items]
     );
 
     const handleRequest = React.useCallback(
       (event: React.MouseEvent<HTMLButtonElement>) => {
-       onRequest(defectMode)
+        onRegisterRequest(items)
       },
       [rows]
     );
-
-    console.log(defectMode)
-    console.log(note)
+    console.log("ITEM",items)
+    console.log("AFTER CHANGE",rows)
     return (
       <Paper className={classes.paper}>
         <Toolbar style={{ cursor: "pointer" }} onClick={() => setOpen(!open)}>
@@ -199,7 +159,7 @@ export const AddEditTable = withStyles(styles)<
                 </TableRow>
               </TableHead>
               <TableBody>
-              {defectMode.map((row) => {
+              {items.map((row) => {
                     return (
                       <TableRow>
                         <TableCell key="day">{row.day}</TableCell>
@@ -246,48 +206,31 @@ export const AddEditTable = withStyles(styles)<
                         </TableCell>
 
                         <TableCell key="defectMode" align="right">   
-
-                          <TableCell>
-                            {rows.map((newRow) => {
-                              if (newRow === row) {
-                                return (
-                                  <div style={{ paddingBottom: "0.5rem" }}>              
-                                    <TextField
-                                      id = "defectMode"
-                                      variant="outlined"
-                                      size="small"
-                                      value={row.defectMode}
-                                      onChange={handleDefectModeChange}
-                                    />
-                                  </div>
-                                );
-                              } else {
-                                return false;
-                              }
-                            })}
+                          <TableCell>     
+                            <TextField
+                              id = {row.id.toString()}
+                              name = "defectMode"
+                              variant="outlined"
+                              size="small"
+                              value={row.defectMode}
+                              onChange={handleChange}
+                            />  
                           </TableCell>
-                
                         </TableCell>
 
                         <TableCell key="note" align="right">   
-                        
-                        <TableCell>
-                  
-                                <div style={{ paddingBottom: "0.5rem" }}>
-                                  <TextField
-                                    id = "note"
-                                    key = row.id
-                                    variant="outlined"
-                                    style={{ right: "0.875rem" }}
-                                    size="small"
-                                    value={row.note}
-                                    onChange={handleNoteChange}
-                                  />
-                                </div>
-                        
+                          <TableCell>     
+                            <TextField
+                              id = {row.id.toString()}
+                              name = "note"
+                              variant="outlined"
+                              size="small"
+                              value={row.note}
+                              onChange={handleChange}
+                            />  
+                          </TableCell>
                         </TableCell>
-                     
-                        </TableCell>
+
                         <TableCell key="delete">
                           <div
                             style={{ cursor: "pointer" }}
